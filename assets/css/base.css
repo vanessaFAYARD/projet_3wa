@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+html {
+    font-size: 62.5%;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: #8959A8;
+}
+ul, li {
+    list-style: none;
+    padding: 0;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* HEADER
+===============================*/
+
+/* VERSION DESKTOP */
+@media screen and (min-width:1025px) {
+
+}
+/* VERSION TABLETTE */
+@media screen and (min-width: 768px) {
+
+}
+
+/* MAIN
+===============================*/
+
+/* VERSION DESKTOP */
+@media screen and (min-width:1025px) {
+
+}
+/* VERSION TABLETTE */
+@media screen and (min-width: 768px) {
+
+}
+
+/* FOOTER
+===============================*/
+
+/* VERSION DESKTOP */
+@media screen and (min-width:1025px) {
+
+}
+/* VERSION TABLETTE */
+@media screen and (min-width: 768px) {
+
+}
+
+/* DIVERS
+===============================*/
+.clearfix::after {
+    content:'';
+    clear: both;
+    display: block;
+    font-size:0;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+}
+.repairfix {
+    clear:both;
+}

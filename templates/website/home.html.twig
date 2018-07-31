@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+<link href="{{ asset("build/css/home.css") }}" rel="stylesheet">
+{% endblock %}
+
+{% block banner %}
+<div id="bannerHeader">
+    <section id="logoSection">
+        <button type="button" class="button buttonBanner">C'est parti !</button>
+    </section>
+</div>
+{% endblock %}
+
+{% block aboutMe %}
+<div class="chevron-aboutMe chevron"></div>
+<div class="home-aboutMe">
+    <div class="aboutMe-wrap clearfix gutter">
+        <div class="aboutMe-img">
+            <div class="positionTitle">
+                <p class="titleId home-titleId">Vanessa Fayard</p>
+                <img src="{{asset("build/img/profil.jpg")}}" id="home-imgId" class="imgResponsive" alt="Vanessa FAYARD développement web" title="Vanessa FAYARD développement web" width="1200" height="1198">
+            </div>
+        </div>
+        <section class="aboutMe-text">
+            <h3>Qui suis-je ?</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Alias assumenda autem consequatur cupiditate est eveniet exercitationem inventore?
+                Ab consequatur dolorum, facere ipsum laboriosam,
+                maiores odio omnis perspiciatis praesentium repudiandae veritatis.</p>
+        </section>
+    </div>
+</div>
+{% endblock %}

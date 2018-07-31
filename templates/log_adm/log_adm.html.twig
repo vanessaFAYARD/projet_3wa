@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("build/css/admin.css") }}" rel="stylesheet">
+{% endblock %}
+{% block admin %}
+
+    <form class="form-admin" action="" method="post" data-no-validation="false">>
+
+        <aside class="error-message hidden">
+            <h3><i class="fa fa-warning"></i> Il y a <span class="total-error-count">1</span> erreurs(s) dans le formulaire !</h3>
+            <p><?= $errorMessage ?></p>
+        </aside>
+
+        <fieldset>
+            <legend><i class="fa fa-user"></i> Identification</legend>
+            <div class="form-group">
+                <label for="email">Adresse email</label>
+                <input type="text" class="form-control" id="email" name="email" data-name="email" data-type="email" data-required aria-describedby="email" placeholder="Votre email">
+                <small id="emailHelp" class="form-text text-muted">Ne partagez pas votre email à quelqu'un d'autre</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="form-control" id="password"  name="password" data-name="mot de passe" data-minlength="8" data-required  placeholder="Mot de passe">
+            </div>
+            <input type="submit" class="button button-primary" value="Connexion">
+            <a href="{{ path('home') }}" class="button button-cancel">Annuler</a>
+        </fieldset>
+    </form>
+{% endblock %}
