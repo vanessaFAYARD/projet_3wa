@@ -7,25 +7,30 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"> <!--Font icon-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" rel="stylesheet"> <!--normalise css-->
         <link href="{{ asset("build/css/base.css") }}" rel="stylesheet">
-        <link href="{{ asset("build/css/form.css") }}" rel="stylesheet">
     {% endblock %}
-</head>
-<body>
+    {% block script %}
+        <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    {% endblock %}
 
+<body>
     <header class="headerWrapper">
         <div class="navWrap clearfix gutter">
             <nav id="headerNav">
                 <div id="headerLeft">
-                    <a href="" class="titleId">Vanessa Fayard</a>
+                    <a href="{{ path('home') }}" class="titleId">Vanessa Fayard</a>
                 </div>
                 <div id="headerRight">
                     <button type="button" class="button button-menu">Menu <i class="fas fa-bars"></i></button>
                 </div>
                 <ul class="hidden mainNavbar">
                     <li class="navItem"><a class="navLink" href="{{ path('home') }}">home</a></li>
-                    <li><a href="#">réalisations</a></li>
-                    <li><a href="#">CV</a></li>
-                    <li><a href="#">contact</a></li>
+                    <li class="navItem"><a href="#">réalisations</a></li>
+                    <li class="navItem"><a href="#">CV</a></li>
+                    <li class="navItem"><a href="#">contact</a></li>
+                    {%  if is_granted('ROLE_ADMIN') %}
+                        <li class="navItem"><a href="{{ path('logout') }}">Déconnexion</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
@@ -73,6 +78,8 @@
         </div>
     </footer>
 
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset("build/js/main.js")}}"></script>
+    {% endblock %}
 </body>
 </html>
