@@ -24,10 +24,30 @@
                     <button type="button" class="button button-menu">Menu <i class="fas fa-bars"></i></button>
                 </div>
                 <ul class="hidden mainNavbar">
-                    <li class="navItem"><a class="navLink" href="{{ path('home') }}">home</a></li>
-                    <li class="navItem"><a href="#">réalisations</a></li>
-                    <li class="navItem"><a href="#">CV</a></li>
-                    <li class="navItem"><a href="#">contact</a></li>
+                    {%  if is_granted('ROLE_ADMIN') %}
+                        <li class="navItem navItemAdmin">Ajouter
+                            <ul class="subMenu">
+                                <li>
+                                    <a href="{{ path('home') }}">Projet</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('home') }}">Compétence</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li class="navItem">
+                        <a class="navLink" href="{{ path('home') }}">home</a>
+                    </li>
+                    <li class="navItem">
+                        <a href="#">réalisations</a>
+                    </li>
+                    <li class="navItem">
+                        <a href="#">CV</a>
+                    </li>
+                    <li class="navItem">
+                        <a href="#">contact</a>
+                    </li>
                     {%  if is_granted('ROLE_ADMIN') %}
                         <li class="navItem"><a href="{{ path('logout') }}">Déconnexion</a></li>
                     {% endif %}
@@ -39,6 +59,7 @@
 
     {% block admin %}{% endblock %}
     {% block aboutMe %}{% endblock %}
+    {% block skills %}{% endblock %}
 
     <footer class="footer">
         <div class="footerWrap gutter">

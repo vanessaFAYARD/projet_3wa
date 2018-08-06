@@ -56,9 +56,6 @@ class AdminController extends Controller
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        dump($error);
-        dump($lastUsername);
-
         return $this->render('log_adm/log_adm.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
