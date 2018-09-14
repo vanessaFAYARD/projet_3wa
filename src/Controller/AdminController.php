@@ -21,7 +21,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdminController extends Controller
 {
-    // admin pour enregistrement, à supprimer ensuite, pour connexion admin
+    // TODO admin pour enregistrement, à supprimer ensuite, pour connexion admin
     /*
     public function admin(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {

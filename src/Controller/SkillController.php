@@ -23,17 +23,21 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class SkillController extends AbstractController
 {
     /**
-     * @Route("/skills", name="skills_list")
+     * @Route("/", name="home")
      */
-    public function show(SkillRepository $skill)
+    public function show(SkillRepository $skillRepository)
     {
-        return $this->render('skill/show_skill.html.twig', [
-            'skill' => $skill
+        $skills = $skillRepository->findAll();
+
+        return $this->render('website/home.html.twig', [
+            'skills' => $skills
         ]);
+
     }
 
     /**
      * @Route("/skills/add", name="skill_add")
+     * @Route("skills/{id}/edit", name="skill_edit")
      *
      */
     public function form(Request $request, ObjectManager $objectManager, ValidatorInterface $validator, Skill $skill = NULL)
@@ -51,7 +55,7 @@ class SkillController extends AbstractController
             $objectManager->persist($skill);
             $objectManager->flush();
 
-            return $this->redirectToRoute('skills_list');
+            return $this->redirectToRoute('home');
         }
 
         if (!empty($errors)){

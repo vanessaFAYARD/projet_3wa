@@ -5,11 +5,11 @@
     <link href="{{ asset("build/css/form.css") }}" rel="stylesheet">
 {% endblock %}
 <!-- TODO modifier formulaire en fonction de l'entité -->
-{% block projects %}
+{% block category %}
     {%  if is_granted('ROLE_ADMIN') %}
-        {{ form_start(formProject, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
+        {{ form_start(formCategory, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
         <fieldset>
-            <legend><i class="far fa-plus-square"></i> Ajout/modification d'un projet</legend>
+            <legend><i class="far fa-plus-square"></i> Ajout/modification d'une catégorie</legend>
             <div class="form-group">
                 {% for error in errors %}
                     <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ error.message }}</p>
@@ -17,14 +17,23 @@
             </div>
             <div class="form-group">
                 <label for="skill_name">Nom :</label>
-                {{ form_widget(formCategory.name, {'attr': {'placeholder': 'nom de la catégorie', 'class': 'form-control'}}) }}
+                {{ form_widget(formSkill.name, {'attr': {'placeholder': 'nom de la compétence', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="skill_description">Description :</label>
+                {{ form_widget(formSkill.description, {'attr': {'placeholder': 'description', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="skill_image">Image :</label>
+                {{ form_widget(formSkill.image, {'attr': {'placeholder': 'nom de l\'image', 'class': 'form-control'}}) }}
+                <p id="emailHelp" class="form-text text-muted">fichier en .jpeg ou .png</p>
             </div>
             <div class="form-group">
                 <input type="submit" class="button" value="Enregistrer">
                 <a href="{{ path('home') }}" class="button button-cancel">Annuler</a>
             </div>
         </fieldset>
-        {{ form_end(formCategory) }}
+        {{ form_end(formSkill) }}
 
     {% else %}
         <div class="error-page">
