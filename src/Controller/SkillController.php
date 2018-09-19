@@ -22,14 +22,10 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class SkillController extends AbstractController
 {
-    /**
-     * @Route("/", name="home")
-     */
     public function show(SkillRepository $skillRepository)
     {
         $skills = $skillRepository->findAll();
-
-        return $this->render('website/home.html.twig', [
+        return $this->render('skill/skill.html.twig', [
             'skills' => $skills
         ]);
 

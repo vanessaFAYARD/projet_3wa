@@ -1,3 +1,5 @@
+{# templates/website/home.html.twig #}
+
 {% extends "base.html.twig" %}
 
 {% block stylesheets %}
@@ -17,95 +19,44 @@
 </div>
 {% endblock %}
 
-{% block aboutMe %}
-<div class="chevron-aboutMe chevron"></div>
-<div class="home-aboutMe">
-    <div class="aboutMe-wrap clearfix gutter">
-        <div class="aboutMe-img">
-            <div class="positionTitle">
-                <p class="titleId home-titleId">Vanessa Fayard</p>
-                <img src="{{asset("build/img/profil.jpg")}}" id="home-imgId" class="imgResponsive" alt="Vanessa FAYARD développement web" title="Vanessa FAYARD développement web" width="1200" height="1198">
-            </div>
-        </div>
-        <section class="aboutMe-text">
-            <h3>Qui suis-je ?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Alias assumenda autem consequatur cupiditate est eveniet exercitationem inventore?
-                Ab consequatur dolorum, facere ipsum laboriosam,
-                maiores odio omnis perspiciatis praesentium repudiandae veritatis.</p>
-        </section>
-    </div>
-</div>
-{% endblock %}
-
-{% block contact %}
-    <div class="home-contact clearfix">
-        <div class="contact-position">
-            <div class="contact-wrap contact">
-                <section id="contact">
-                    <h3>Contactez-moi</h3>
-                    <p>Laborum mixtape crucifix church-key, sartorial subway tile umami. Snackwave whatever forage, microdosing heirloom.</p>
-                    <!-- Form Contact -->
-                    <!-- TODO send by email -->
-                    <form action="{{ path("home") }}" method="post" novalidate="novalidate" data-no-validation="false">
-
-                        <!-- <p class="error-message"><i class="fas fa-exclamation-circle"></i> Le ou les champs saisis sont incorrects.</p> -->
-
-                        <aside class="errors-message hidden">
-                            <h4><i class="fa fa-warning"></i> Il y a <span class="total-error-count">1</span> erreurs(s) dans le formulaire !</h4>
-                            <p class="error-message"></p>
-                        </aside>
-                        <div class="form-group form-group-name">
-                            <input id="firstName" class="form-control form-control-contact" data-type="name" placeholder="Prénom" type="text" data-required data-name="prénom">
-                            <input id="lastName" class="form-control form-control-contact" data-type="name" placeholder="Nom" type="text" data-required data-name="nom">
-                        </div>
-                        <div class="form-group">
-                            <input id="email" class="form-control" data-type="email" placeholder="Email" type="text" data-required data-name="email">
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" class="form-control" data-type="text" placeholder="Votre message" data-required data-name="message"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="button" value="Envoyer">
-                            <a href="{{ path('home') }}" class="button button-cancel">Annuler</a>
-                        </div>
-                    </form>
-                </section>
-            </div>
-            <div class="contact-wrap resume-wrap">
-                <div class="resume">
-                    <a href="{{ path('home') }}" class="button">Mon CV</a>
+{% block body %}
+    {% block aboutMe %}
+    <div class="chevron-aboutMe chevron"></div>
+    <div class="home-aboutMe">
+        <div class="aboutMe-wrap clearfix gutter">
+            <div class="aboutMe-img">
+                <div class="positionTitle">
+                    <p class="titleId home-titleId">Vanessa Fayard</p>
+                    <img src="{{asset("build/img/profil.jpg")}}" id="home-imgId" class="imgResponsive" alt="Vanessa FAYARD développement web" title="Vanessa FAYARD développement web" width="1200" height="1198">
                 </div>
+            </div>
+            <section class="aboutMe-text">
+                <h3>Qui suis-je ?</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Alias assumenda autem consequatur cupiditate est eveniet exercitationem inventore?
+                    Ab consequatur dolorum, facere ipsum laboriosam,
+                    maiores odio omnis perspiciatis praesentium repudiandae veritatis.</p>
+            </section>
+        </div>
+    </div>
+    {% endblock %}
+    {% block contactMe %}
+<div class="home-contact clearfix">
+    <div class="contact-position">
+        <div class="contact-wrap resume-wrap">
+            <div class="resume">
+                <a href="{{ path('home') }}" class="button">Mon CV</a>
             </div>
         </div>
     </div>
+</div>
+    {% endblock %}
 
-{% endblock %}
-
-{% block skills %}
-    <div class="chevron-skills chevron"></div>
-    <section class="home-skills gutter">
-        <h3>Mes compétences</h3>
-        <div class="skills-list">
-            {%  for skill in skills %}
-            <div class="skill-contain">
-                <div class="skill clearfix">
-                    <img src="{{ asset("build/img/skills/") }}{{ skill.image }}" class="imgResponsive img-skill" width="500" height="500" title="{{ skill.name }}" alt="{{ skill.name }}">
-                    <div class="skill-details">
-                        <p class="skill-name">
-                            {{ skill.name }}
-                            {%  if is_granted('ROLE_ADMIN') %}
-                                <a href="{{ path('skill_edit', { 'id': skill.id }) }}" class="button button-more"><i class="fas fa-edit"></i></a>
-                            {% endif %}
-                        </p>
-                        <p class="skill-description">{{ skill.description }}</p>
-                    </div>
-                </div>
-
-            </div>
-            {%  endfor %}
-        </div>
-    </section>
+    {% block skills %}
+    {{ render(controller(
+        'App\\Controller\\SkillController::show'
+    )) }}
+    {% endblock %}
 {% endblock %}
 
 

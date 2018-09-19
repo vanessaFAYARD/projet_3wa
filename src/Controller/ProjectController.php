@@ -20,9 +20,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ProjectController extends AbstractController
 {
-    /**
-     * @Route("/", name="home")
-     */
     public function show(ProjectRepository $projectRepository)
     {
         $projects = $projectRepository->findAll();

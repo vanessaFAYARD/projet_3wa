@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("build/css/admin.css") }}" rel="stylesheet">
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset("build/js/classes/FormValidator.js") }}"></script>
+{% endblock %}
+
+    {% block contact %}
+    <div class="contact-position">
+        <div class="contact-wrap contact">
+            <section id="contact">
+                <h3>Contactez-moi</h3>
+                <p>Laborum mixtape crucifix church-key, sartorial subway tile umami. Snackwave whatever forage, microdosing heirloom.</p>
+                <!-- Form Contact -->
+                <!-- TODO send by email -->
+                {{ form_start(formContact, {'attr': {'novalidate': 'novalidate','data-no-validation': 'false' , 'class': 'form'}}) }}
+
+                {% for error in errors %}
+                    <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ error.message }}</p>
+                {% endfor %}
+
+
+                    <aside class="errors-message hidden">
+                        <h4><i class="fa fa-warning"></i> Il y a <span class="total-error-count">1</span> erreurs(s) dans le formulaire !</h4>
+                        <p class="error-message"></p>
+                    </aside>
+
+                    <div class="form-group form-group-name">
+                        {{ form_widget(formContact.firstName, {'attr': {'placeholder': 'Prénom', 'class': 'form-control form-control-contact', 'id': 'firstName', 'data-type': 'name', 'data-name': 'prénom'}}) }}
+                        {{ form_widget(formContact.lastName, {'attr': {'placeholder': 'Nom', 'class': 'form-control form-control-contact', 'id': 'lastName', 'data-type': 'name', 'data-name': 'nom'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(formContact.email, {'attr': {'placeholder': 'Email', 'class': 'form-control', 'id': 'email', 'data-type': 'email', 'data-name': 'email'}}) }}
+                    </div>
+                <div class="form-group">
+                    {{ form_widget(formContact.object, {'attr': {'placeholder': 'Objet', 'class': 'form-control', 'id': 'object', 'data-type': 'text', 'data-name': 'object'}}) }}
+                </div>
+
+                <div class="form-group">
+                        {{ form_widget(formContact.message, {'attr': {'placeholder': 'Message', 'class': 'form-control', 'id': 'message', 'data-type': 'text', 'data-name': 'message'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(formContact.send, {'attr': {'class': 'button'}, 'label': 'Envoyer'} ) }}
+                        <a href="{{ path('home') }}" class="button button-cancel">Annuler</a>
+                    </div>
+                {{ form_end(formContact) }}
+            </section>
+        </div>
+    </div>
+
+    {% endblock %}
