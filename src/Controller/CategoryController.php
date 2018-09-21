@@ -14,6 +14,7 @@ class CategoryController extends Controller
 {
     /**
      * @Route("/category/add", name="category_add")
+     * @Route("category/{id}/edit", name="category_edit")
      */
     public function form(Request $request, ObjectManager $objectManager, ValidatorInterface $validator, Category $category = NULL)
     {

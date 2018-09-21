@@ -24,8 +24,8 @@ class Skill
      * @Assert\NotBlank(message="Merci de saisir un nom pour cette compétence")
      * @Assert\Regex(
      *     pattern="/^[A-Z]/",
-     *     message="La première lettre du nom doit être une majuscule"
-     * )
+     *     message="La première lettre du nom doit être une majuscule")
+     *
      */
     private $name;
 
@@ -34,8 +34,8 @@ class Skill
      * @Assert\NotBlank(message="La description est obligatoire")
      * @Assert\Regex(
      *     pattern="/^[A-Z]/",
-     *     message="La première lettre de la description doit être une majuscule"
-     * )
+     *     message="La première lettre de la description doit être une majuscule")
+     *
      */
     private $description;
 
@@ -44,15 +44,16 @@ class Skill
      * @Assert\NotBlank(message="Merci de saisir le nom d'une image")
      * @Assert\Regex(
      *     pattern="/[a-zA-Z-\d]+.+(?:jpg|png|jpeg)/",
-     *     message="L'image doit être au format .jpg, .jpeg ou .png"
-     * )
+     *     message="L'image doit être au format .jpg, .jpeg ou .png")
+     *
      */
     private $image;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Project", inversedBy="skills")
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="skill")
      */
     private $projects;
+
 
     public function __construct()
     {
@@ -101,28 +102,38 @@ class Skill
     }
 
     /**
-     * @return Collection|project[]
+     * @return Collection|Project[]
      */
     public function getProjects(): Collection
     {
         return $this->projects;
     }
 
-    public function addProject(project $project): self
+    public function addProject(Project $project): self
     {
         if (!$this->projects->contains($project)) {
             $this->projects[] = $project;
+            $project->setSkill($this);
         }
 
         return $this;
     }
 
-    public function removeProject(project $project): self
+    public function removeProject(Project $project): self
     {
         if ($this->projects->contains($project)) {
             $this->projects->removeElement($project);
+// set the owning side to null (unless already changed)
+            if ($project->getSkill() === $this) {
+                $project->setSkill(null);
+            }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

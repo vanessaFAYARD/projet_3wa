@@ -24,7 +24,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="id_category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="category")
      */
     private $projects;
 
@@ -79,5 +79,10 @@ class Category
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

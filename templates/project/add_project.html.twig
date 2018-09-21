@@ -4,8 +4,7 @@
     {{ parent() }}
     <link href="{{ asset("build/css/form.css") }}" rel="stylesheet">
 {% endblock %}
-<!-- TODO modifier formulaire en fonction de l'entité -->
-{% block projects %}
+{% block body %}
     {%  if is_granted('ROLE_ADMIN') %}
         {{ form_start(formProject, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
         <fieldset>
@@ -16,15 +15,45 @@
                 {% endfor %}
             </div>
             <div class="form-group">
-                <label for="skill_name">Nom :</label>
-                {{ form_widget(formCategory.name, {'attr': {'placeholder': 'nom de la catégorie', 'class': 'form-control'}}) }}
+                <label for="Project_name">Nom :</label>
+                {{ form_widget(formProject.name, {'attr': {'placeholder': 'nom du projet', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="project_description">Description :</label>
+                {{ form_widget(formProject.description, {'attr': {'placeholder': 'description', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="project_image">Image :</label>
+                {{ form_widget(formProject.caption, {'attr': {'placeholder': 'nom de l\'image', 'class': 'form-control'}}) }}
+                <p id="emailHelp" class="form-text text-muted">Nom du fichier en .jpeg ou .png</p>
+                <label for="project_image">Capture d'écran du projet :</label>
+                {{ form_widget(formProject.image, {'attr': {'placeholder': 'nom de l\'image', 'class': 'form-control'}}) }}
+                <p id="emailHelp" class="form-text text-muted">Nom du fichier en .jpeg ou .png</p>
+            </div>
+            <div class="form-group">
+                <label for="Project_url">lien (url) :</label>
+                {{ form_widget(formProject.url, {'attr': {'placeholder': 'lien de visualistation du projet', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="Project_date">date de création :</label>
+                {{ form_widget(formProject.createdAt, {'attr': {'class': 'form-control form-date'}}) }}
+            </div>
+            <div class="form-group" id="project-choice">
+                <div>
+                    <label for="Project_skill">Compétence :</label>
+                    {{ form_widget(formProject.skill, {'attr': {'class': 'form-control form-choice'}}) }}
+                </div>
+                <div>
+                    <label for="Project_category">Catégorie :</label>
+                    {{ form_widget(formProject.category, {'attr': {'class': 'form-control form-choice'}}) }}
+                </div>
+
             </div>
             <div class="form-group">
                 <input type="submit" class="button" value="Enregistrer">
                 <a href="{{ path('home') }}" class="button button-cancel">Annuler</a>
             </div>
-        </fieldset>
-        {{ form_end(formCategory) }}
+        </fieldset>        {{ form_end(formProject) }}
 
     {% else %}
         <div class="error-page">

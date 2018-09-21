@@ -1,4 +1,27 @@
 {% extends "base.html.twig" %}
-{% block skills %}
-    <h2>Test bonjour !</h2>
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("build/css/project.css") }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="project-container">
+        <div>
+            <!-- TODO gestion image + mise en forme vue projet -->
+            <img src="{{ asset("build/img/projects/") }}{{ project.caption }}" class="imgResponsive img-project" width="500" height="500" title="{{ project.name }}" alt="{{ project.name }}">
+        </div>
+        <section class="project-description">
+            <h2 class="project-title">{{ project.name }}</h2>
+            <div>
+                <p>{{ project.description }}</p>
+                <span><i class="fas fa-tag"></i> {{ project.skill }}</span><span><i class="fas fa-tag"></i> {{ project.category }}</span>
+            </div>
+            <p><i class="far fa-calendar"></i> {{ project.createdAt|date('m-Y') }}</p>
+            {% if project.url %}
+            <a href="{{ path('home') }}/{{ project.url }}" class="button">Testez-moi !</a>
+            {% endif %}
+        </section>
+    </div>
+
 {% endblock %}

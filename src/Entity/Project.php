@@ -2,9 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
@@ -20,16 +19,26 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Le nom du projet est obligatoire")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci de saisir le nom d'une image")
+     * @Assert\Regex(
+     *     pattern="/[a-zA-Z-\d]+.+(?:jpg|png|jpeg)/",
+     *     message="L'image doit être au format .jpg, .jpeg ou .png")
+     *
      */
     private $caption;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="La description est obligatoire")
+     * @Assert\Regex(
+     *     pattern="/^[A-Z]/",
+     *     message="La première lettre de la description doit être une majuscule")
      */
     private $description;
 
@@ -40,28 +49,31 @@ class Project
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Merci de saisir le nom d'une image")
+     * @Assert\Regex(
+     *     pattern="/[a-zA-Z-\d]+.+(?:jpg|png|jpeg)/",
+     *     message="L'image doit être au format .jpg, .jpeg ou .png")
      */
     private $image;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="Merci de saisir la date de création du projet")
+     * @Assert\Type("\DateTime")
      */
     private $createdAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Skill", mappedBy="projects")
-     */
-    private $skills;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="projects")
+     * @Assert\NotBlank(message="Merci de séléctionner une catégorie")
      */
     private $category;
 
-    public function __construct()
-    {
-        $this->skills = new ArrayCollection();
-    }
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Skill", inversedBy="projects")
+     * @Assert\NotBlank(message="Merci de séléctionner une compétence")
+     */
+    private $skill;
 
     public function getId()
     {
@@ -140,34 +152,6 @@ class Project
         return $this;
     }
 
-    /**
-     * @return Collection|Skill[]
-     */
-    public function getSkills(): Collection
-    {
-        return $this->skills;
-    }
-
-    public function addSkill(Skill $skill): self
-    {
-        if (!$this->skills->contains($skill)) {
-            $this->skills[] = $skill;
-            $skill->addProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSkill(Skill $skill): self
-    {
-        if ($this->skills->contains($skill)) {
-            $this->skills->removeElement($skill);
-            $skill->removeProject($this);
-        }
-
-        return $this;
-    }
-
     public function getIdCategory(): ?Category
     {
         return $this->category;
@@ -188,6 +172,18 @@ class Project
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getSkill(): ?Skill
+    {
+        return $this->skill;
+    }
+
+    public function setSkill(?Skill $skill): self
+    {
+        $this->skill = $skill;
 
         return $this;
     }

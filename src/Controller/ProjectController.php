@@ -24,13 +24,14 @@ class ProjectController extends AbstractController
     {
         $projects = $projectRepository->findAll();
 
-        return $this->render('project/show_project.html.twig', [
+        return $this->render('project/show_projects.html.twig', [
             'projects' => $projects
         ]);
     }
 
     /**
      * @Route("/projects/add", name="project_add")
+     * @Route("projects/{id}/edit", name="project_edit")
      *
      */
     public function form(Request $request, ObjectManager $objectManager, ValidatorInterface $validator, Project $project = NULL)
@@ -63,4 +64,15 @@ class ProjectController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/projects/{id}", name="project_id")
+     *
+     */
+    public function showOne(Project $project)
+    {
+        // if {id} does not exist -> error 404
+        return $this->render('project/show_project.html.twig', [
+           'project' => $project
+        ]);
+    }
 }

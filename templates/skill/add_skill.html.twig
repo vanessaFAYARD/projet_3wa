@@ -5,7 +5,7 @@
     <link href="{{ asset("build/css/form.css") }}" rel="stylesheet">
 {% endblock %}
 
-{% block skills %}
+{% block body %}
 {%  if is_granted('ROLE_ADMIN') %}
     {{ form_start(formSkill, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
     <fieldset>
@@ -26,7 +26,7 @@
         <div class="form-group">
             <label for="skill_image">Image :</label>
             {{ form_widget(formSkill.image, {'attr': {'placeholder': 'nom de l\'image', 'class': 'form-control'}}) }}
-            <p id="emailHelp" class="form-text text-muted">fichier en .jpeg ou .png</p>
+            <p id="emailHelp" class="form-text text-muted">Nom du fichier en .jpeg ou .png</p>
         </div>
         <div class="form-group">
             <input type="submit" class="button" value="Enregistrer">

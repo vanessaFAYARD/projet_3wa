@@ -29,10 +29,13 @@
                         <li class="navItem navItemAdmin">Ajouter
                             <ul class="subMenu">
                                 <li>
-                                    <a href="{{ path('home') }}">Projet</a>
+                                    <a href="{{ path('project_add') }}">Projet</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('home') }}">Compétence</a>
+                                    <a href="{{ path('skill_add') }}">Compétence</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('category_add') }}">Catégorie</a>
                                 </li>
                             </ul>
                         </li>
@@ -47,7 +50,7 @@
                         <a href="#">CV</a>
                     </li>
                     <li class="navItem">
-                        <a href="#">contact</a>
+                        <a href="{{ path('contact') }}">contact</a>
                     </li>
                     {%  if is_granted('ROLE_ADMIN') %}
                         <li class="navItem"><a href="{{ path('logout') }}">Déconnexion</a></li>
@@ -69,12 +72,12 @@
                 <p>Vanessa FAYARD</p>
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="https://twitter.com/VanessaFayard">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://fr.linkedin.com/in/vanessa-fayard-b7503b153">
                             <i class="fab fa-linkedin"></i>
                         </a>
                     </li>
