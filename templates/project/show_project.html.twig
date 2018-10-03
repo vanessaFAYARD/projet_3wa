@@ -4,23 +4,40 @@
     {{ parent() }}
     <link href="{{ asset("build/css/project.css") }}" rel="stylesheet">
 {% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset("build/js/classes/Modal.js") }}"></script>
+{% endblock %}
 
 {% block body %}
-    <div class="project-container">
-        <div>
-            <!-- TODO gestion image + mise en forme vue projet -->
+    <div class="modal modalHide" aria-hidden="true">
+        <div id="detailModal">
+            <button type="button" id="close" class="button-modal" aria-label="Fermer" title="Fermer cette fenêtre modale" data-dismiss="dialog"><i class="fas fa-times"></i></button>
+            <div id="detail">
+                <img src="{{ asset("build/img/projects/") }}{{ project.image }}" class="imgResponsive" id="project-image" alt="{{ project.name }}" title="{{ project.name }}" width="1200" height="800">
+            </div>
+            </div>
+    </div>
+    <div class="project-container gutter">
+        <div class="caption">
+            <button type="button" id="view" class="button-modal" aria-haspopup="dialog" aria-controls="dialog"><i class="fas fa-search-plus"></i></button>
             <img src="{{ asset("build/img/projects/") }}{{ project.caption }}" class="imgResponsive img-project" width="500" height="500" title="{{ project.name }}" alt="{{ project.name }}">
         </div>
-        <section class="project-description">
-            <h2 class="project-title">{{ project.name }}</h2>
-            <div>
-                <p>{{ project.description }}</p>
-                <span><i class="fas fa-tag"></i> {{ project.skill }}</span><span><i class="fas fa-tag"></i> {{ project.category }}</span>
+        <section class="description">
+            <h3 class="project-title">{{ project.name }}</h3>
+            <div class="project-description">
+                <p>{{ project.description|nl2br }}</p>
+                <p>
+                    {% if project.url %}
+                        <a href="{{ path('home') }}projects/{{ project.id }}/{{ project.url }}" class="button button-url">Testez-moi !</a>
+                    {% endif %}
+                </p>
+                <ul class="list-tag">
+                    <li class="tag"><i class="fas fa-tag"></i> {{ project.skill }}</li>
+                    <li class="tag"><i class="fas fa-tag"></i> {{ project.category }}</li>
+                </ul>
+                <p class="project-date"><i class="far fa-calendar"></i> {{ project.createdAt|date('m-Y') }}</p>
             </div>
-            <p><i class="far fa-calendar"></i> {{ project.createdAt|date('m-Y') }}</p>
-            {% if project.url %}
-            <a href="{{ path('home') }}/{{ project.url }}" class="button">Testez-moi !</a>
-            {% endif %}
         </section>
     </div>
 

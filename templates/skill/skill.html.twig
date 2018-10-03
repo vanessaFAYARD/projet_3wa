@@ -1,23 +1,23 @@
 {# templates/website/skill.html.twig #}
     <div class="chevron-skills chevron"></div>
-    <section class="home-skills gutter">
-        <h3>Mes compétences</h3>
-        <div class="skills-list">
+
+    <section class="home-skills">
+        <h3 class="title-section">Mes compétences</h3>
+        <div class="list home">
             {%  for skill in skills %}
-                <div class="skill-contain">
-                    <div class="skill clearfix">
+                <div class="list-container">
+                    <div class="clearfix">
                         <img src="{{ asset("build/img/skills/") }}{{ skill.image }}" class="imgResponsive img-skill" width="500" height="500" title="{{ skill.name }}" alt="{{ skill.name }}">
                         <div class="skill-details">
                             <p class="skill-name">
                                 {{ skill.name }}
                                 {%  if is_granted('ROLE_ADMIN') %}
-                                    <a href="{{ path('skill_edit', { 'id': skill.id }) }}" class="button button-more"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ path('skill_edit', { 'id': skill.id }) }}" class="button button-more">  <i class="fas fa-edit"></i></a>
                                 {% endif %}
                             </p>
                             <p class="skill-description">{{ skill.description }}</p>
                         </div>
                     </div>
-
                 </div>
             {%  endfor %}
         </div>

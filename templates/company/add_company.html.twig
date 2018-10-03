@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("build/css/form.css") }}" rel="stylesheet">
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset("build/js/classes/FormValidator.js") }}"></script>
+{% endblock %}
+{% block body %}
+    {%  if is_granted('ROLE_ADMIN') %}
+        {{ form_start(formCompany, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
+        <fieldset>
+            <legend><i class="far fa-plus-square"></i> Ajout/modification d'une société - CV</legend>
+            <div class="form-group">
+                {% for error in errors %}
+                    <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ error.message }}</p>
+                {% endfor %}
+            </div>
+            <aside class="errors-message hidden">
+                <h4><i class="fa fa-warning"></i> Il y a <span class="total-error-count">1</span> erreurs(s) dans le formulaire !</h4>
+                <p class="error-message"></p>
+            </aside>
+            <div class="form-group">
+                <label for="company_name">Nom :</label>
+                {{ form_widget(formCompany.name, {'attr': {'placeholder': 'nom de la société', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="company_activity">Activité(s) :</label>
+                {{ form_widget(formCompany.activity, {'attr': {'placeholder': 'activité(s)', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="company_activity">Description (falcutative) :</label>
+                {{ form_widget(formCompany.description, {'attr': {'placeholder': 'description', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="company_city">Ville :</label>
+                {{ form_widget(formCompany.city, {'attr': {'placeholder': 'ville', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <label for="company_url">Code Postal :</label>
+                {{ form_widget(formCompany.address, {'attr': {'placeholder': 'code postal', 'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <input type="submit" class="button" value="Enregistrer">
+                <a href="{{ path('home') }}" class="button button-cancel">Annuler</a>
+            </div>
+        </fieldset>
+        {{ form_end(formCompany) }}
+
+    {% else %}
+        <div class="error-page">
+            <div class="error-page-wrapper">
+                <p><i class="fas fa-exclamation-circle"></i> Vous n'avez pas les droits pour accéder à cette page</p>
+            </div>
+            <div class="error-page-wrapper">
+                <a href="{{ path('home') }}" class="button button-cancel">Accueil</a>
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

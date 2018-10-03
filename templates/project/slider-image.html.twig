@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("build/css/project.css") }}" rel="stylesheet">
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset("build/js/classes/Slider.js") }}"></script>
+{% endblock %}
+
+{% block body %}
+<section class="slider-container">
+    <h3 class="title-project">Slider d'image</h3>
+    <ul class="slider-list">
+        <li>
+            <button id="slider-previous" class="button button-control">
+                <i class="fa fa-backward" aria-hidden="true"></i>
+            </button>
+        </li>
+        <li>
+            <figure id="slider" class="slider">
+                <img src="">
+            </figure>
+        </li>
+        <li>
+            <button id="slider-next"  class="button button-control">
+                <i class="fa fa-forward" aria-hidden="true"></i>
+            </button>
+        </li>
+    </ul>
+    <div class="toolbar">
+        <button id="toolbar-toggle" class="button">
+            <i class="fas fa-wrench" aria-hidden="true"></i> Barre d'outils
+        </button>
+    </div>
+    <div class="sliderHide slider-tools">
+        <ul class="slider-list">
+            <li>
+                <button id="slider-toggle" class="button button-control">
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                </button>
+            </li>
+            <li>
+                <button id="slider-random" class="button button-control">
+                    <i class="fa fa-random" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+
+{% endblock %}

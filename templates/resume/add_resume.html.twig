@@ -11,9 +11,9 @@
 
 {% block body %}
     {%  if is_granted('ROLE_ADMIN') %}
-        {{ form_start(formProject, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
+        {{ form_start(formResume, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
         <fieldset>
-            <legend><i class="far fa-plus-square"></i> Ajout/modification d'un projet</legend>
+            <legend><i class="far fa-plus-square"></i> Ajout/modification d'une expérience/formation</legend>
             <div class="form-group">
                 {% for error in errors %}
                     <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ error.message }}</p>
@@ -24,37 +24,33 @@
                 <p class="error-message"></p>
             </aside>
             <div class="form-group">
-                <label for="Project_name">Nom :</label>
-                {{ form_widget(formProject.name, {'attr': {'placeholder': 'nom du projet', 'class': 'form-control'}}) }}
+                <label for="resume_name">Nom :</label>
+                {{ form_widget(formResume.name, {'attr': {'placeholder': 'nom de l\'expérience', 'class': 'form-control'}}) }}
             </div>
             <div class="form-group">
                 <label for="project_description">Description :</label>
-                {{ form_widget(formProject.description, {'attr': {'placeholder': 'description', 'class': 'form-control'}}) }}
+                {{ form_widget(formResume.description, {'attr': {'placeholder': 'description', 'class': 'form-control'}}) }}
             </div>
             <div class="form-group">
-                <label for="project_image">Image :</label>
-                {{ form_widget(formProject.caption, {'attr': {'placeholder': 'nom de l\'image', 'class': 'form-control'}}) }}
-                <p id="emailHelp" class="form-text text-muted">Nom du fichier en .jpeg ou .png</p>
-                <label for="project_image">Capture d'écran du projet :</label>
-                {{ form_widget(formProject.image, {'attr': {'placeholder': 'nom de l\'image', 'class': 'form-control'}}) }}
-                <p id="emailHelp" class="form-text text-muted">Nom du fichier en .jpeg ou .png</p>
+                <label for="project_image">Période :</label>
+                {{ form_widget(formResume.period, {'attr': {'placeholder': 'période', 'class': 'form-control'}}) }}
             </div>
             <div class="form-group">
-                <label for="Project_url">lien (url) :</label>
-                {{ form_widget(formProject.url, {'attr': {'placeholder': 'lien de visualistation du projet', 'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                <label for="Project_date">date de création :</label>
-                {{ form_widget(formProject.createdAt, {'attr': {'class': 'form-control form-date'}}) }}
+                <label for="resume_url">Expérence/Formation :</label>
+                {{ form_widget(formResume.value_section, {'attr': {'placeholder': 'lien de visualistation du projet', 'class': 'form-control'}}) }}
             </div>
             <div class="form-group" id="project-choice">
                 <div>
-                    <label for="Project_skill">Compétence :</label>
-                    {{ form_widget(formProject.skill, {'attr': {'class': 'form-control form-choice'}}) }}
+                    <label for="resume_date">Société :</label>
+                    {{ form_widget(formResume.company, {'attr': {'class': 'form-control form-choice'}}) }}
                 </div>
                 <div>
-                    <label for="Project_category">Catégorie :</label>
-                    {{ form_widget(formProject.category, {'attr': {'class': 'form-control form-choice'}}) }}
+                    <label for="resume_skill">Ecole :</label>
+                    {{ form_widget(formResume.school, {'attr': {'class': 'form-control form-choice'}}) }}
+                </div>
+                <div>
+                    <label for="resume_category">Projet :</label>
+                    {{ form_widget(formResume.project, {'attr': {'class': 'form-control form-choice'}}) }}
                 </div>
 
             </div>
@@ -62,7 +58,7 @@
                 <input type="submit" class="button" value="Enregistrer">
                 <a href="{{ path('home') }}" class="button button-cancel">Annuler</a>
             </div>
-        </fieldset>        {{ form_end(formProject) }}
+        </fieldset>        {{ form_end(formResume) }}
 
     {% else %}
         <div class="error-page">

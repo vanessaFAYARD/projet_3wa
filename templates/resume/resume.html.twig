@@ -1,0 +1,93 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("build/css/home.css") }}" rel="stylesheet">
+    <link href="{{ asset("build/css/resume.css") }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper gutter">
+        <div id="resume-wrap">
+            <section>
+                <h3 class="title-section">Diplômes et formations</h3>
+                {%  for resume in resumes|reverse %}
+                    {% if resume.value_section == 2 %}
+                        <div class="resume-title">
+                            <h4 class="resume-name">{{ resume.name }}</h4>
+                            <span class="resume-date">{{ resume.period }}</span>
+                        </div>
+                        <div class="resume-details">
+                            <p>{{ resume.school }} - {{ resume.school.city }} ({{ resume.school.address }})</p>
+                            <p>{{ resume.description|nl2br }}</p>
+                            {% if resume.project %}
+                            <div class="resume-project">
+                                <span>Projet :</span>
+                                <a href="{{ path("project_id", {'id': resume.project.id}) }}" class="project-link">{{ resume.project }}</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </section>
+            <section>
+                <h3 class="title-section">Expériences professionnelles</h3>
+                {%  for resume in resumes|reverse %}
+                    {% if resume.value_section == 1 %}
+                        <div class="resume-title">
+                            <h4 class="resume-name">{{ resume.name }}</h4>
+                            <span class="resume-date">{{ resume.period }}</span>
+                        </div>
+                        <div class="resume-details">
+                            <p>{{ resume.company }} - {{ resume.company.city }} ({{ resume.company.address }})</p>
+                            <p>{{ resume.description|nl2br }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </section>
+            {% use "project/show_projects.html.twig" %}
+            {% block projects %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+        <aside id="about-wrap">
+            <h3 class="title-section title-hidden">À propos de moi</h3>
+            <div>
+                <div class="about-img">
+                    <img src="{{asset("build/img/profil.jpg")}}" id="about-img" class="imgResponsive" alt="Vanessa FAYARD développement web" title="Vanessa FAYARD développement web" width="1200" height="1198">
+                    <p class="titleId about-titleId">Vanessa Fayard</p>
+                </div>
+            </div>
+            <div class="about-section">
+                <h4 class="about-title">Contact</h4>
+                <address>
+                    <p><i class="fas fa-phone"></i> <a href="tel:0675658894">06.75.65.88.94</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:vanessa.fayard@gmail.com">vanessa.fayard@gmail.com</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> 38340 VOREPPE</p>
+                </address>
+            </div>
+            <div class="about-section">
+                <h4 class="about-title">Compétences</h4>
+                <ul class="about-skills">
+                    {% for skill in skills %}
+                        <li>{{ skill.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="about-section">
+                <h4 class="about-title">Langues</h4>
+                <ul>
+                    <li>Anglais : Courant - lu, écrit, parlé</li>
+                    <li>Espagnol : débutant</li>
+                </ul>
+            </div>
+            <div class="about-section">
+                <h4 class="about-title">Social</h4>
+                <p><a href="https://fr.linkedin.com/in/vanessa-fayard-b7503b153"><i class="fab fa-linkedin"></i> Vanessa FAYARD</a></p>
+                <p><a href="https://twitter.com/vanessafayard"><i class="fab fa-twitter"></i> @vanessafayard</a></p>
+            </div>
+        </aside>
+    </div>
+
+
+{% endblock %}

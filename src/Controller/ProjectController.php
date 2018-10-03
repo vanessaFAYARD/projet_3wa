@@ -75,4 +75,15 @@ class ProjectController extends AbstractController
            'project' => $project
         ]);
     }
+
+    /**
+     * @Route("/projects/{id}/{slug}", name="project_slug")
+     *
+     */
+    public function showMore($slug)
+    {
+        // if  url does not exist -> error 404
+            dump($slug);
+            return $this->render("project/slider-image.html.twig");
+    }
 }

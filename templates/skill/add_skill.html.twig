@@ -4,7 +4,10 @@
     {{ parent() }}
     <link href="{{ asset("build/css/form.css") }}" rel="stylesheet">
 {% endblock %}
-
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset("build/js/classes/FormValidator.js") }}"></script>
+{% endblock %}
 {% block body %}
 {%  if is_granted('ROLE_ADMIN') %}
     {{ form_start(formSkill, {'attr': {'novalidate': 'novalidate', 'class': 'form'}}) }}
@@ -15,6 +18,10 @@
             <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ error.message }}</p>
             {% endfor %}
         </div>
+        <aside class="errors-message hidden">
+            <h4><i class="fa fa-warning"></i> Il y a <span class="total-error-count">1</span> erreurs(s) dans le formulaire !</h4>
+            <p class="error-message"></p>
+        </aside>
         <div class="form-group">
             <label for="skill_name">Nom :</label>
             {{ form_widget(formSkill.name, {'attr': {'placeholder': 'nom de la compétence', 'class': 'form-control'}}) }}

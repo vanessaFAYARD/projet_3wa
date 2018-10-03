@@ -5,6 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompanyRepository")
@@ -20,38 +22,50 @@ class Company
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Assert\NotBlank(message="Le nom de la société est obligatoire")
      */
     private $name;
 
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="L'activité de la société est obligatoire")
      */
     private $activity;
 
 
     /**
      * @ORM\Column(type="string", length=40)
+     * @Assert\NotBlank(message="La ville de la société est obligatoire")
      */
     private $city;
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
+     * @Assert\Regex(
+     *     pattern="/[0-9]{2}/",
+     *     message="Le code postal doit être un code postal valide (exemple : 38)")
+     * @Assert\NotBlank(message="Le code postal de la société est obligatoire")
      */
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\resume", mappedBy="id_company")
+     * @ORM\OneToMany(targetEntity="App\Entity\Resume", mappedBy="company")
      */
-    private $resumes;
+    private $resume;
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             public function __construct()
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    public function __construct()
     {
-        $this->resumes = new ArrayCollection();
+        $this->resume = new ArrayCollection();
     }
 
-    public function getId(): ?int
+     public function getId(): ?int
     {
         return $this->id;
     }
@@ -92,12 +106,12 @@ class Company
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getAddress(): ?int
     {
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress(int $address): self
     {
         $this->address = $address;
 
@@ -105,35 +119,51 @@ class Company
     }
 
     /**
-     * @return Collection|resume[]
+     * @return Collection|Resume[]
      */
-    public function getResumes(): Collection
+    public function getResume(): Collection
     {
-        return $this->resumes;
+        return $this->resume;
     }
 
-    public function addResume(resume $resume): self
+    public function addResume(Resume $resume): self
     {
-        if (!$this->resumes->contains($resume)) {
-            $this->resumes[] = $resume;
-            $resume->setIdCompany($this);
+        if (!$this->resume->contains($resume)) {
+            $this->resume[] = $resume;
+            $resume->setCompany($this);
         }
 
         return $this;
     }
 
-    public function removeResume(resume $resume): self
+    public function removeResume(Resume $resume): self
     {
-        if ($this->resumes->contains($resume)) {
-            $this->resumes->removeElement($resume);
+        if ($this->resume->contains($resume)) {
+            $this->resume->removeElement($resume);
             // set the owning side to null (unless already changed)
-            if ($resume->getIdCompany() === $this) {
-                $resume->setIdCompany(null);
+            if ($resume->getCompany() === $this) {
+                $resume->setCompany(null);
             }
         }
 
         return $this;
     }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
 }

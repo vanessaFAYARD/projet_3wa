@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -74,6 +76,17 @@ class Project
      * @Assert\NotBlank(message="Merci de séléctionner une compétence")
      */
     private $skill;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Resume", mappedBy="project")
+     */
+    private $resume;
+
+    public function __construct()
+    {
+        $this->resume = new ArrayCollection();
+    }
+
 
     public function getId()
     {
@@ -186,5 +199,41 @@ class Project
         $this->skill = $skill;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Resume[]
+     */
+    public function getResume(): Collection
+    {
+        return $this->resume;
+    }
+
+    public function addResume(Resume $resume): self
+    {
+        if (!$this->resume->contains($resume)) {
+            $this->resume[] = $resume;
+            $resume->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResume(Resume $resume): self
+    {
+        if ($this->resume->contains($resume)) {
+            $this->resume->removeElement($resume);
+            // set the owning side to null (unless already changed)
+            if ($resume->getProject() === $this) {
+                $resume->setProject(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
