@@ -1,0 +1,71 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("build/css/project.css") }}" rel="stylesheet">
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset("build/js/ardoise/classes/ColorPicker.js") }}"></script>
+    <script src="{{ asset("build/js/ardoise/classes/Pen.js") }}"></script>
+    <script src="{{ asset("build/js/ardoise/classes/Program.js") }}"></script>
+    <script src="{{ asset("build/js/ardoise/classes/Slate.js") }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="mainWrapper">
+        <div id="canvasWrapper">
+            <h1 class="title-section"><i class="fas fa-paint-brush"></i> Ardoise Magique</h1>
+            <canvas id="canvas" width="700" height="450">
+                Votre navigateur ne supporte pas Canvas.
+            </canvas>
+        </div>
+        <div id="modifierWrapper">
+            <div class="penModifier">
+                <h3>Outils</h3>
+                <ul id="listButton">
+                    <li><button id="tool-clear-canvas" class="button"><i class="far fa-file"></i></button></li>
+                    <li><button id="tool-erase" data-color="#fff" class="button"><i class="fas fa-eraser"></i></button></li>
+                    <li><button id="tool-color-picker" class="button"><i class="fas fa-eye-dropper"></i></button></li>
+                </ul>
+                <div class="color-picker">
+                    <canvas id="canvas-color-picker" width="280" height="280">
+                        Votre navigateur ne supporte pas Canvas.
+                    </canvas>
+                    <div class="color" id="colorPicker"></div>
+                </div>
+            </div>
+            <div  class="penModifier colorChoice">
+                <h3>Couleur</h3>
+                <nav>
+                    <ul>
+                        <li><div class="color" data-color="#75B2A5"></div></li>
+                        <li><div class="color" data-color="#D9FFF7"></div></li>
+                        <li><div class="color" data-color="#B27763"></div></li>
+                        <li><div class="color" data-color="#FFD0C0"></div></li>
+                        <li><div class="color" data-color="#CC858D"></div></li>
+                    </ul>
+                    <ul>
+                        <li><div class="color" data-color="#FFFDC0"></div></li>
+                        <li><div class="color" data-color="#fcca46"></div></li>
+                        <li><div class="color" data-color="#367999"></div></li>
+                        <li><div class="color" data-color="#607F79"></div></li>
+                        <li><div class="color" data-color="#30403C"></div></li>
+                    </ul>
+                </nav>
+            </div>
+            <div  class="penModifier">
+                <h3>Epaisseur</h3>
+                <button class="thickness button" data-thickness="1">Fin</button>
+                <button class="thickness button" data-thickness="3">Normal</button>
+                <button class="thickness button" data-thickness="6">Epais</button>
+            </div>
+        </div>
+    </div>
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("build/js/ardoise/main.js")}}"></script>
+{% endblock %}
+
+{% endblock %}

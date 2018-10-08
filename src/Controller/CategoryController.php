@@ -25,7 +25,11 @@ class CategoryController extends Controller
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
-        $errors = $validator->validate($category);
+        $errors = [];
+
+        if($form->isSubmitted() && !$form->isValid()) {
+            $errors = $validator->validate($category);
+        }
 
         if($form->isSubmitted() && $form->isValid()) {
             $objectManager->persist($category);
@@ -34,15 +38,9 @@ class CategoryController extends Controller
             return $this->redirectToRoute('home');
         }
 
-        if(!empty($errors)) {
-            return $this->render('category/add_category.html.twig', [
-                'formCategory' => $form->createView(),
-                'errors' => $errors
-            ]);
-        }
-
         return $this->render('category/add_category.html.twig', [
-            'formCategory' => $form->createView()
+            'formCategory' => $form->createView(),
+            'errors' => $errors
         ]);
 
     }

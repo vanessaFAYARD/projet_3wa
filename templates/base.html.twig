@@ -12,6 +12,8 @@
     {% block script %}
         <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="{{ asset("build/js/classes/Scroll.js") }}"></script>
+        <script src="{{ asset("build/js/classes/ResponsiveMenu.js") }}"></script>
     {% endblock %}
 
 <body>
@@ -22,9 +24,9 @@
                     <a href="{{ path('home') }}" class="titleId">Vanessa Fayard</a>
                 </div>
                 <div id="headerRight">
-                    <button type="button" class="button button-menu">Menu <i class="fas fa-bars"></i></button>
+                    <button type="button" class="button" id="button-menu">Menu <i class="fas fa-bars"></i></button>
                 </div>
-                <ul class="hidden mainNavbar">
+                <ul class="mainNavbar navbarHide" aria-hidden="true">
                     {%  if is_granted('ROLE_ADMIN') %}
                         <li class="navItem navItemAdmin">Ajouter
                             <ul class="subMenu">
@@ -53,7 +55,7 @@
                         <a class="navLink" href="{{ path('home') }}">home</a>
                     </li>
                     <li class="navItem">
-                        <a href="{{ path('home') }}">Réalisation</a>
+                        <a href="#projects">Réalisation</a>
                     </li>
                     <li class="navItem">
                         <a href="{{ path('resume') }}">CV</a>
@@ -69,11 +71,15 @@
         </div>
         {% block banner %}{% endblock %}
     </header>
+    <div id="main-position">
+        {% block admin %}{% endblock %}
+        {% block contact %}{% endblock %}
+        {% block body %}{% endblock %}
 
-    {% block admin %}{% endblock %}
-    {% block contact %}{% endblock %}
-    {% block body %}{% endblock %}
-
+        <div>
+            <a href="#" class="buttonUp hidden"><i class="fas fa-arrow-circle-up"></i></a>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footerWrap gutter">
@@ -92,6 +98,7 @@
                     </li>
                 </ul>
                 <p id="copyright">Copyright © <a href="#">Vanessa FAYARD</a> - 2018 </p>
+                <p id="credits"><a href="{{ path('mentions_legales') }}">Mentions Légales</a></p>
             </div>
             <div class="footerDiv contactMe">
                 <p>Contactez-moi :</p>

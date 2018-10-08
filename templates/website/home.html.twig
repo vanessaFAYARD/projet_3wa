@@ -13,16 +13,16 @@
 
 {% block banner %}
 <div id="bannerHeader">
-    <section id="logoSection">
-        <button type="button" class="button buttonBanner">C'est parti !</button>
-    </section>
+    <div id="buttonBanner">
+        <a href="#about-me"  class="scrollTo"><i class="fas fa-arrow-circle-down"></i></a>
+    </div>
 </div>
 {% endblock %}
 
 {% block body %}
     {% block aboutMe %}
     <div class="chevron-aboutMe chevron"></div>
-    <div class="home-aboutMe">
+    <div class="home-aboutMe" id="about-me">
         <div class="aboutMe-wrap clearfix gutter">
             <div class="aboutMe-img">
                 <div class="positionTitle">
@@ -31,19 +31,20 @@
                 </div>
             </div>
             <section class="aboutMe-text">
-                <h3>Qui suis-je ?</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Alias assumenda autem consequatur cupiditate est eveniet exercitationem inventore?
-                    Ab consequatur dolorum, facere ipsum laboriosam,
-                    maiores odio omnis perspiciatis praesentium repudiandae veritatis.</p>
+                <h3 id="aboutMe-title">Qui suis-je ?</h3>
+                <p>
+                    Moi c'est Vanessa, j'ai entamé en 2018 une reconversion professionnelle: et si je devenais <strong>développeuse web </strong>?
+                    <br>
+                    Ma formation au sein de la 3W Academy de Grenoble a validé mon amour pour la programmation et les lignes de codes ! Depuis je me forme à de nouvelles technologies, et framework, comme Symfony 4.
+                </p>
             </section>
         </div>
     </div>
     {% endblock %}
-    {% block contactMe %}
-<div class="home-contact clearfix">
-    <div class="contact-position">
-        <div class="contact-wrap resume-wrap">
+    {% block resume %}
+<div class="home-resume">
+    <div class="resume-position">
+        <div class="resume-wrap">
             <div class="resume">
                 <a href="{{ path('home') }}" class="button">Mon CV</a>
             </div>

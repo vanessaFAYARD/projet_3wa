@@ -6,12 +6,12 @@
 {% endblock %}
 {% block script %}
     {{ parent() }}
-    <script src="{{ asset("build/js/classes/Slider.js") }}"></script>
+    <script src="{{ asset("build/js/slider/classes/Slider.js") }}"></script>
 {% endblock %}
 
 {% block body %}
 <section class="slider-container">
-    <h3 class="title-project">Slider d'image</h3>
+    <h1 class="title-project">Slider d'image</h1>
     <ul class="slider-list">
         <li>
             <button id="slider-previous" class="button button-control">
@@ -34,7 +34,7 @@
             <i class="fas fa-wrench" aria-hidden="true"></i> Barre d'outils
         </button>
     </div>
-    <div class="sliderHide slider-tools">
+    <div class="slider-tools">
         <ul class="slider-list">
             <li>
                 <button id="slider-toggle" class="button button-control">
@@ -50,6 +50,10 @@
     </div>
 </section>
 
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset("build/js/slider/main.js")}}"></script>
+    {% endblock %}
 
 
 {% endblock %}

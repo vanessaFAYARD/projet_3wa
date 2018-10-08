@@ -45,8 +45,11 @@ class SkillController extends AbstractController
         $form = $this->createForm(SkillType::class, $skill);
         $form->handleRequest($request);
 
-        $errors = $validator->validate($skill);
+        $errors = [];
 
+        if($form->isSubmitted() && !$form->isValid()) {
+            $errors = $validator->validate($skill);
+        }
         if($form->isSubmitted() && $form->isValid()) {
             $objectManager->persist($skill);
             $objectManager->flush();
@@ -54,15 +57,9 @@ class SkillController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        if (!empty($errors)){
-            return $this->render('skill/add_skill.html.twig', [
-                'formSkill' => $form->createView(),
-                'errors' => $errors
-            ]);
-        }
-
         return $this->render('skill/add_skill.html.twig', [
-            'formSkill' => $form->createView()
+            'formSkill' => $form->createView(),
+            'errors' => $errors
         ]);
     }
 }

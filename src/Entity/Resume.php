@@ -110,6 +110,18 @@ class Resume
         return $this;
     }
 
+    public function getValueSection(): ?int
+    {
+        return $this->value_section;
+    }
+
+    public function setValueSection(int $value_section): self
+    {
+        $this->value_section = $value_section;
+
+        return $this;
+    }
+
     public function getProject(): ?Project
     {
         return $this->project;

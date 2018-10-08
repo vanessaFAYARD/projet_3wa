@@ -79,16 +79,11 @@ class ContactMailController extends Controller
 
         $form->handleRequest($request);
 
-        /* if ($form->isSubmitted()) {
-            // data is an array with "name", "email", and "message" keys
-            $data = $form->getData();
-            dump($data);
-            $firstName = $form["firstName"]->getData();
-            $lastName = $form["lastName"]->getData();
-            $email = $form["email"]->getData();
-        } */
+        $errors = [];
 
-        $errors = $validator->validate($form);
+        if($form->isSubmitted() && !$form->isValid()) {
+            $errors = $validator->validate($form);
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$data = $form->getData();
@@ -106,7 +101,6 @@ class ContactMailController extends Controller
                     'form can\'t be reached like this');
             }
         }
-
 
         return $this->render('contact/form_contact.html.twig', [
             'formContact' => $form->createView(),

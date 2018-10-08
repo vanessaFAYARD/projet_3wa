@@ -41,9 +41,14 @@ class ProjectController extends AbstractController
         }
 
         $form = $this->createForm(ProjectType::class, $project);
+
         $form->handleRequest($request);
 
-        $errors = $validator->validate($project);
+        $errors = [];
+
+        if($form->isSubmitted() && !$form->isValid()) {
+            $errors = $validator->validate($project);
+        }
 
         if($form->isSubmitted() && $form->isValid()) {
             $objectManager->persist($project);
@@ -51,16 +56,18 @@ class ProjectController extends AbstractController
 
             return $this->redirectToRoute('home');
         }
-
+/*
         if(!empty($errors)) {
             return $this->render('project/add_project.html.twig', [
                 'formProject' => $form->createView(),
                 'errors' => $errors
             ]);
         }
+*/
 
         return $this->render('project/add_project.html.twig', [
-            'formProject' => $form->createView()
+            'formProject' => $form->createView(),
+                'errors' => $errors
         ]);
     }
 
@@ -84,6 +91,6 @@ class ProjectController extends AbstractController
     {
         // if  url does not exist -> error 404
             dump($slug);
-            return $this->render("project/slider-image.html.twig");
+            return $this->render("project/$slug.html.twig");
     }
 }

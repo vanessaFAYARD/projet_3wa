@@ -1,7 +1,6 @@
 {# templates/website/skill.html.twig #}
     <div class="chevron-skills chevron"></div>
-
-    <section class="home-skills">
+    <section class="home-skills skill-position">
         <h3 class="title-section">Mes compétences</h3>
         <div class="list home">
             {%  for skill in skills %}
@@ -15,7 +14,7 @@
                                     <a href="{{ path('skill_edit', { 'id': skill.id }) }}" class="button button-more">  <i class="fas fa-edit"></i></a>
                                 {% endif %}
                             </p>
-                            <p class="skill-description">{{ skill.description }}</p>
+                            <p class="skill-description">{{ skill.description|nl2br }}</p>
                         </div>
                     </div>
                 </div>
