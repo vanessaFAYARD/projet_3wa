@@ -6,7 +6,9 @@
         {%  for project in projects %}
             <div class="list-container list-project gutter">
                 <div class="projects clearfix">
-                    <img src="{{ asset("build/img/projects/") }}{{ project.caption }}" class="imgResponsive img-project" width="500" height="500" title="{{ project.name }}" alt="{{ project.name }}">
+                    <a href="{{ path("project_id", {'id': project.id}) }}">
+                        <img src="{{ asset("build/img/projects/") }}{{ project.caption }}" class="imgResponsive img-project" width="500" height="500" title="{{ project.name }}" alt="{{ project.name }}">
+                    </a>
                     <div class="project-details">
                         <h4 class="project-name">{{ project.name }}</h4>
                         <div class="project-legend">

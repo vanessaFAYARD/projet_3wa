@@ -86,20 +86,8 @@ class ContactMailController extends Controller
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$data = $form->getData();
-            //$this->mail_utf8($data);
-            if ($request->isMethod('POST')){
-                $this->addFlash(
-                    'notice',
-                    'Ok');
-                $this->addFlash(
-                    'sent',
-                    'Ok');
-            } else {
-                $this->addFlash(
-                    'notice',
-                    'form can\'t be reached like this');
-            }
+            $data = $form->getData();
+            $this->mail_utf8($data);
         }
 
         return $this->render('contact/form_contact.html.twig', [
@@ -111,25 +99,6 @@ class ContactMailController extends Controller
             'message'    => $message,
             'errors'      => $errors
         ]);
-
-
-        /*
-        $defaultData = array('message' => 'Type your message here');
-            ->add('lastName', TextType::class)
-            ->add('email', EmailType::class)
-        $form = $this->createFormBuilder($defaultData)
-            ->add('firstName', TextType::class)
-            ->add('message', TextareaType::class)
-            ->add('send', SubmitType::class)
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // data is an array with "name", "email", and "message" keys
-            $data = $form->getData();
-            dump($data);
-        } */
     }
 
 

@@ -56,14 +56,6 @@ class ProjectController extends AbstractController
 
             return $this->redirectToRoute('home');
         }
-/*
-        if(!empty($errors)) {
-            return $this->render('project/add_project.html.twig', [
-                'formProject' => $form->createView(),
-                'errors' => $errors
-            ]);
-        }
-*/
 
         return $this->render('project/add_project.html.twig', [
             'formProject' => $form->createView(),
@@ -72,7 +64,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/projects/{id}", name="project_id")
+     * @Route("/project/{id}", name="project_id")
      *
      */
     public function showOne(Project $project)
@@ -84,7 +76,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/projects/{id}/{slug}", name="project_slug")
+     * @Route("/project/{id}/{slug}", name="project_slug")
      *
      */
     public function showMore($slug)

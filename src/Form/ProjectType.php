@@ -16,6 +16,7 @@ class ProjectType extends AbstractType
             ->add('caption')
             ->add('description')
             ->add('url')
+            ->add('url2')
             ->add('image')
             ->add('createdAt')
             ->add('skill')

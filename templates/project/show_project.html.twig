@@ -18,7 +18,7 @@
             </div>
             </div>
     </div>
-    <div class="project-container gutter">
+    <div class="project-container project-section gutter">
         <div class="caption">
             <button type="button" id="view" class="button-modal" aria-haspopup="dialog" aria-controls="dialog"><i class="fas fa-search-plus"></i></button>
             <img src="{{ asset("build/img/projects/") }}{{ project.caption }}" class="imgResponsive img-project" width="500" height="500" title="{{ project.name }}" alt="{{ project.name }}">
@@ -29,7 +29,9 @@
                 <p>{{ project.description|nl2br }}</p>
                 <p>
                     {% if project.url %}
-                        <a href="{{ path('home') }}projects/{{ project.id }}/{{ project.url }}" class="button button-url">Testez-moi !</a>
+                        <a href="{{ path('home') }}project/{{ project.id }}/{{ project.url }}" class="button button-url">Testez-moi !</a>
+                    {% elseif project.url2 %}
+                        <a href="{{ project.url2 }}" class="button button-url">Testez-moi !</a>
                     {% endif %}
                 </p>
                 <ul class="list-tag">

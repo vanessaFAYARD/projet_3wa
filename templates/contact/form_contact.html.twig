@@ -2,7 +2,6 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset("build/css/admin.css") }}" rel="stylesheet">
 {% endblock %}
 {% block script %}
     {{ parent() }}
@@ -12,13 +11,11 @@
     {% block contact %}
     <div class="contact-position">
         <div class="contact-wrap contact">
-            <section id="contact">
-                <h3>Contactez-moi</h3>
-                <p>Laborum mixtape crucifix church-key, sartorial subway tile umami. Snackwave whatever forage, microdosing heirloom.</p>
                 <!-- Form Contact -->
                 <!-- TODO send by email -->
                 {{ form_start(formContact, {'attr': {'novalidate': 'novalidate','data-no-validation': 'false' , 'class': 'form'}}) }}
-
+                <fieldset>
+                    <legend class="title-section" id="contact">Contactez-moi</legend>
                 {% for error in errors %}
                     <p class="error-message"><i class="fas fa-exclamation-circle"></i> {{ error.message }}</p>
                 {% endfor %}
@@ -47,8 +44,8 @@
                         {{ form_widget(formContact.send, {'attr': {'class': 'button'}, 'label': 'Envoyer'} ) }}
                         <a href="{{ path('home') }}" class="button button-cancel">Annuler</a>
                     </div>
+                </fieldset>
                 {{ form_end(formContact) }}
-            </section>
         </div>
     </div>
 

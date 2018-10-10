@@ -82,6 +82,11 @@ class Project
      */
     private $resume;
 
+    /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    private $url2;
+
     public function __construct()
     {
         $this->resume = new ArrayCollection();
@@ -235,5 +240,17 @@ class Project
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getUrl2(): ?string
+    {
+        return $this->url2;
+    }
+
+    public function setUrl2(?string $url2): self
+    {
+        $this->url2 = $url2;
+
+        return $this;
     }
 }
