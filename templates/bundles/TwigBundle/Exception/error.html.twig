@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="error-page">
+        <h1 class="title-section">Page introuvable - {{ status_code }} {{ status_text }}</h1>
+
+        <p>La page demandée n'existe pas. </p>
+        <p>Vérifiez l'url saisi, ou <a href="{{ path('home') }}" class="button button-cancel">retournez à l'accueil</a>.</p>
+    </section>
+
+{% endblock %}

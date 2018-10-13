@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("build/css/project.css") }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <section class="project-section">
+        <h1 class="title-section">Painter</h1>
+        <div id="svgRenderer">
+            {{ svgRenderer|raw }}
+        </div>
+
+    </section>
+
+{% endblock %}
