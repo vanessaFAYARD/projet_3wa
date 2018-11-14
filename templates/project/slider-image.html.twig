@@ -4,11 +4,6 @@
     {{ parent() }}
     <link href="{{ asset("build/css/project.css") }}" rel="stylesheet">
 {% endblock %}
-{% block script %}
-    {{ parent() }}
-    <script src="{{ asset("build/js/slider/classes/Slider.js") }}"></script>
-{% endblock %}
-
 {% block body %}
 <section class="slider-container">
     <h1 class="title-project">Slider d'image</h1>
@@ -49,11 +44,9 @@
         </ul>
     </div>
 </section>
-
     {% block javascripts %}
         {{ parent() }}
-        <script src="{{ asset("build/js/slider/main.js")}}"></script>
+        <script src="{{ asset("build/js/slider/utilities.js") }}"></script>
+        <script src="{{ asset("build/js/slider/slider.js") }}"></script>
     {% endblock %}
-
-
 {% endblock %}

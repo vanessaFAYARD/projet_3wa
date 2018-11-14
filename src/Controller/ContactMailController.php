@@ -88,6 +88,7 @@ class ContactMailController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $this->mail_utf8($data);
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('contact/form_contact.html.twig', [
@@ -104,7 +105,6 @@ class ContactMailController extends Controller
 
     public function mail_utf8(array $data)
     {
-        dump($data);
         $to = 'vanessa.fayard@gmail.com';
 
         $name = $data["firstName"].' '.$data['lastName'];

@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="FR-fr">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Vanessa FAYARD - Dev Web{% endblock %}</title>
+    <meta name="description" content="Portfolio de Vanessa FAYARD - Développeuse PHP">
+    <meta name="keywords" content="HTML,CSS,JavaScript,PHP">
+    <meta name="author" content="Vanessa FAYARD">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Vanessa FAYARD - Portfolio{% endblock %}</title>
     {% block stylesheets %}
+        <link rel="icon" type="image/png" href="{{ asset("build/img/favicon_vf.png") }}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous"> <!--Font icon-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" rel="stylesheet"> <!--normalise css-->
         <link href="{{ asset("build/css/form.css") }}" rel="stylesheet">
@@ -15,7 +20,7 @@
         <script src="{{ asset("build/js/classes/Scroll.js") }}"></script>
         <script src="{{ asset("build/js/classes/ResponsiveMenu.js") }}"></script>
     {% endblock %}
-
+</head>
 <body>
     <header class="headerWrapper">
         <div class="navWrap clearfix gutter">
@@ -52,7 +57,7 @@
                         </li>
                     {% endif %}
                     <li class="navItem">
-                        <a class="navLink" href="{{ path('home') }}">home</a>
+                        <a class="navLink" href="{{ path('home') }}">Accueil</a>
                     </li>
                     <li class="navItem">
                         <a href="{{ path('home') }}#projects">Réalisation</a>
@@ -61,7 +66,7 @@
                         <a href="{{ path('resume') }}">CV</a>
                     </li>
                     <li class="navItem">
-                        <a href="{{ path('contact') }}">contact</a>
+                        <a href="{{ path('contact') }}">Contact</a>
                     </li>
                     {%  if is_granted('ROLE_ADMIN') %}
                         <li class="navItem"><a href="{{ path('logout') }}">Déconnexion</a></li>
@@ -87,17 +92,17 @@
                 <p>Vanessa FAYARD</p>
                 <ul>
                     <li>
-                        <a href="https://twitter.com/VanessaFayard">
+                        <a href="https://twitter.com/VanessaFayard" target="_blank">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://fr.linkedin.com/in/vanessa-fayard-b7503b153">
+                        <a href="https://fr.linkedin.com/in/vanessa-fayard-b7503b153" target="_blank">
                             <i class="fab fa-linkedin"></i>
                         </a>
                     </li>
                 </ul>
-                <p id="copyright">Copyright © <a href="#">Vanessa FAYARD</a> - 2018 </p>
+                <p id="copyright">Copyright © <a href="{{ path('home') }}">Vanessa FAYARD</a> - 2018 </p>
                 <p id="credits"><a href="{{ path('mentions_legales') }}">Mentions Légales</a></p>
             </div>
             <div class="footerDiv contactMe">
@@ -105,15 +110,15 @@
                 <ul>
                     <li>
                         <i class="fa fa-phone"></i>
-                        <a href="tel:+33675658894">0675658894</a>
+                        <a href="tel:+33675658894" target="_blank">0675658894</a>
                     </li>
                     <li>
                         <i class="fa fa-envelope"></i>
-                        <a href="mailto:vanessa.fayard@gmail.com">vanessa.fayard@gmail.com</a>
+                        <a href="mailto:vanessa.fayard@gmail.com" target="_blank">vanessa.fayard@gmail.com</a>
                     </li>
                     <li>
                         <i class="fa fa-map-marker-alt"></i>
-                        <a href="https://goo.gl/maps/VYrW3XACji22">Voreppe - Grenoble (38)</a>
+                        <a href="https://goo.gl/maps/VYrW3XACji22" target="_blank">Voreppe - Grenoble (38)</a>
                     </li>
                 </ul>
             </div>

@@ -82,7 +82,6 @@ class ProjectController extends AbstractController
     public function showMore($slug)
     {
         // if  url does not exist -> error 404
-            dump($slug);
             return $this->render("project/$slug.html.twig");
     }
 }

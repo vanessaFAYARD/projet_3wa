@@ -14,7 +14,7 @@
 {% block banner %}
 <div id="bannerHeader">
     <div id="buttonBanner">
-        <a href="#about-me"  class="scrollTo"><i class="fas fa-arrow-circle-down"></i></a>
+        <a href="#about-me" class="scrollTo"><i class="fas fa-arrow-circle-down"></i></a>
     </div>
 </div>
 {% endblock %}
@@ -27,7 +27,7 @@
             <div class="aboutMe-img">
                 <div class="positionTitle">
                     <p class="titleId home-titleId">Vanessa Fayard</p>
-                    <img src="{{asset("build/img/profil.jpg")}}" id="home-imgId" class="imgResponsive" alt="Vanessa FAYARD développement web" title="Vanessa FAYARD développement web" width="1200" height="1198">
+                    <img src="{{asset("build/img/profil.jpg")}}" id="home-imgId" class="imgResponsive" alt="Vanessa FAYARD développement web" title="Vanessa FAYARD développement web" width="700" height="700">
                 </div>
             </div>
             <section class="aboutMe-text">
@@ -52,7 +52,6 @@
     </div>
 </div>
     {% endblock %}
-
     {% block skills %}
     {{ render(controller(
         'App\\Controller\\SkillController::show'
